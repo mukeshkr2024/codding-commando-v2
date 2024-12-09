@@ -1,0 +1,40 @@
+<svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="27" height="27" fill="#333333"/>
+<g id="Contact us response page" clip-path="url(#clip0_0_1)">
+<rect width="1440" height="1157" transform="translate(-942 -212)" fill="#FBF5FC"/>
+<path id="Vector" opacity="0.72" fill-rule="evenodd" clip-rule="evenodd" d="M-474.196 809.611C-317.847 931.77 -371.694 997.615 -278.733 1112.22C-188.075 1223.99 65.3402 1396.47 47.9756 1453.37C30.8383 1509.53 -202.682 1375.24 -343.38 1324.07C-470.645 1277.79 -575.958 1264.61 -723.878 1172.66C-891.249 1068.63 -1055.64 935.842 -1152.25 821.29C-1250.82 704.43 -1266.05 620.859 -1226.24 577.055C-1187.96 534.932 -1077.05 551.212 -944.162 592.305C-804.497 635.493 -632.983 685.546 -474.196 809.611Z" fill="#B9B0EE"/>
+<rect id="Rectangle 159" x="-944" y="-212" width="1455" height="812" fill="#10001C"/>
+<g id="Group 3">
+<line id="Line 28" x1="-177" y1="18.948" x2="1176.57" y2="18.948" stroke="#FFB5FC" stroke-opacity="0.3" stroke-width="0.5"/>
+</g>
+<g id="Group 177">
+<g id="Rectangle 21" filter="url(#filter1_b_0_1)">
+<rect x="-505" y="-31" width="566" height="426" rx="52" fill="url(#paint0_linear_0_1)" fill-opacity="0.13"/>
+<rect x="-504.5" y="-30.5" width="565" height="425" rx="51.5" stroke="url(#paint1_linear_0_1)"/>
+</g>
+</g>
+<g id="Group 208" opacity="0.38">
+<path id="Vector_2" d="M24.2131 3.00001L3.70703 23.5061" stroke="#896E9E" stroke-width="5.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M23.5061 23.5061L3 3" stroke="#896E9E" stroke-width="5.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<defs>
+<filter id="filter1_b_0_1" x="-522.1" y="-48.1" width="600.2" height="460.2" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImageFix" stdDeviation="8.55"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_0_1" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear_0_1" x1="75.3005" y1="-8.20402" x2="-661.767" y2="47.3881" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_1" x1="4.29963" y1="395" x2="-470.879" y2="395" gradientUnits="userSpaceOnUse">
+<stop/>
+<stop offset="1" stop-opacity="0"/>
+</linearGradient>
+<clipPath id="clip0_0_1">
+<rect width="1440" height="1157" fill="white" transform="translate(-942 -212)"/>
+</clipPath>
+</defs>
+</svg>
