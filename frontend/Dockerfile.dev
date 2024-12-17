@@ -1,0 +1,15 @@
+FROM node:18-alpine AS base
+
+WORKDIR /app
+
+# Install dependencies only when needed
+COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
+RUN  npm install --force
+# Copy application code
+COPY . .
+
+# Expose the port for your application
+EXPOSE 3000
+
+# Set the default command for the container in development mode
+CMD ["npm", "run", "dev"]

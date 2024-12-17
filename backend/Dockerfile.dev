@@ -3,9 +3,9 @@ FROM node:18 AS base
 
 WORKDIR /app
 
-# Install dependencies including optional ones
+# Install dependencies
 COPY package.json package-lock.json ./
-RUN npm install --include=optional sharp  # Install sharp with optional dependencies
+RUN npm install
 
 # Copy application code
 COPY . .
