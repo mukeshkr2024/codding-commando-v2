@@ -17,6 +17,7 @@ const {
   verifyPassword,
   deleteProfilePic,
   getUserPurchaseDetails,
+  downloadStudentsData,
 } = require("../../controllers/user-controller");
 const { isAuthenticated, authorizRoles } = require("../../middleware/auth");
 const {
@@ -63,6 +64,13 @@ userRouter.get(
   isAuthenticated,
   authorizRoles("admin"),
   getAllStudents
+);
+
+userRouter.get(
+  "/students/data-download",
+  isAuthenticated,
+  authorizRoles("admin"),
+  downloadStudentsData
 );
 
 userRouter.get(

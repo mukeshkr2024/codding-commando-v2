@@ -20,8 +20,15 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Download } from "lucide-react";
 
-export function DataTable({ columns, data, inputEnabled }) {
+export function DataTable({
+  columns,
+  data,
+  inputEnabled,
+  handleDownload,
+  isDownloading,
+}) {
   const [sorting, setSorting] = React.useState([]);
   const [columnFilters, setColumnFilters] = React.useState([]);
 
@@ -52,12 +59,13 @@ export function DataTable({ columns, data, inputEnabled }) {
             }
             className="max-w-sm"
           />
-
-          <div>
-            <p className="text-lg font-bold text-slate-700">
-              Total {data?.length} students{" "}
-            </p>
-          </div>
+          <Button
+            className="flex items-center gap-2.5"
+            onClick={handleDownload}
+            disabled={isDownloading}
+          >
+            {isDownloading ? "Downloading..." : "Download"} <Download />
+          </Button>
         </div>
       )}
       <div className="rounded-md border">
@@ -109,24 +117,6 @@ export function DataTable({ columns, data, inputEnabled }) {
             )}
           </TableBody>
         </Table>
-      </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          Previous
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Next
-        </Button>
       </div>
     </div>
   );

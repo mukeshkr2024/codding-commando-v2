@@ -24,7 +24,7 @@ const registerUser = CatchAsyncError(async (req, res, next) => {
       user: response.user,
     });
   } catch (error) {
-    return next(new ErrorHandler(error.message, 400));
+    return next(new ErrorHandler(error, 400));
   }
 });
 
@@ -39,7 +39,7 @@ const activateUser = async (req, res, next) => {
       user,
     });
   } catch (error) {
-    return next(new ErrorHandler(error.message, 400));
+    return next(new ErrorHandler(error, 400));
   }
 };
 
@@ -56,7 +56,7 @@ const loginUser = async (req, res, next) => {
       },
     });
   } catch (error) {
-    return next(new ErrorHandler(error.message, 400));
+    return next(new ErrorHandler(error, 400));
   }
 };
 
@@ -99,10 +99,9 @@ const updateProfileController = async (req, res) => {
   }
 };
 
-// Get all students
 const getAllStudents = CatchAsyncError(async (req, res, next) => {
   try {
-    const { startDate, endDate } = req.query;
+    const { startDate, endDate, page = 1, limit = 10 } = req.query;
 
     const query = { role: "student" };
 
@@ -112,15 +111,41 @@ const getAllStudents = CatchAsyncError(async (req, res, next) => {
 
     const students = await User.find(query)
       .select("firstName lastName email phone createdAt")
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(Number(limit));
+
+    const totalStudents = await User.countDocuments(query);
 
     return res.status(200).json({
       success: true,
       message: "Students fetched successfully",
       students,
+      totalStudents,
+      totalPages: Math.ceil(totalStudents / limit),
+      currentPage: Number(page),
     });
   } catch (error) {
-    return next(new ErrorHandler(error.message, 400));
+    return next(new ErrorHandler(error, 400));
+  }
+});
+
+const downloadStudentsData = CatchAsyncError(async (req, res) => {
+  try {
+    const { startDate, endDate } = req.query;
+    const query = { role: "student" };
+
+    if (startDate && endDate) {
+      query.createdAt = { $gte: new Date(startDate), $lte: new Date(endDate) };
+    }
+
+    const students = await User.find(query)
+      .select("firstName lastName email phone")
+      .sort({ createdAt: -1 });
+
+    return res.status(200).json(students);
+  } catch (error) {
+    return next(new ErrorHandler(error, 400));
   }
 });
 
@@ -140,7 +165,7 @@ const deleteUser = CatchAsyncError(async (req, res, next) => {
       message: "User deleted successfully",
     });
   } catch (error) {
-    return next(new ErrorHandler(error.message, 400));
+    return next(new ErrorHandler(error, 400));
   }
 });
 
@@ -172,7 +197,7 @@ const getUserById = CatchAsyncError(async (req, res, next) => {
       user,
     });
   } catch (error) {
-    return next(new ErrorHandler(error.message, 400));
+    return next(new ErrorHandler(error, 400));
   }
 });
 
@@ -196,7 +221,7 @@ const getUserByToken = CatchAsyncError(async (req, res) => {
       },
     });
   } catch (error) {
-    return next(new ErrorHandler(error.message, 400));
+    return next(new ErrorHandler(error, 400));
   }
 });
 
@@ -222,7 +247,7 @@ const blockUser = CatchAsyncError(async (req, res, next) => {
       message: "User blocked successfully",
     });
   } catch (error) {
-    return next(new ErrorHandler(error.message, 400));
+    return next(new ErrorHandler(error, 400));
   }
 });
 
@@ -248,7 +273,7 @@ const unblockUser = CatchAsyncError(async (req, res, next) => {
       message: "User unblocked successfully",
     });
   } catch (error) {
-    return next(new ErrorHandler(error.message, 400));
+    return next(new ErrorHandler(error, 400));
   }
 });
 
@@ -265,6 +290,7 @@ const resetPassword = CatchAsyncError(async (req, res, next) => {
     });
 
     if (!user) {
+      console.log("User not found");
       throw next(new ErrorHandler("User not found"), 404);
     }
 
@@ -295,7 +321,8 @@ const resetPassword = CatchAsyncError(async (req, res, next) => {
       message: "Reset Link send successfully",
     });
   } catch (error) {
-    return next(new ErrorHandler(error.message, 400));
+    console.log(error);
+    return next(new ErrorHandler(error, 400));
   }
 });
 
@@ -331,7 +358,7 @@ const changePassword = CatchAsyncError(async (req, res, next) => {
       message: "Password changed successfully",
     });
   } catch (error) {
-    return next(new ErrorHandler(error.message, 400));
+    return next(new ErrorHandler(error, 400));
   }
 });
 
@@ -369,7 +396,7 @@ const updateProfile = CatchAsyncError(async (req, res, next) => {
       message: "Updated user successfully",
     });
   } catch (error) {
-    return next(new ErrorHandler(error.message, 400));
+    return next(new ErrorHandler(error, 400));
   }
 });
 
@@ -393,7 +420,7 @@ const verifyPassword = CatchAsyncError(async (req, res, next) => {
       throw new Error("Password do not match");
     }
   } catch (error) {
-    return next(new ErrorHandler(error.message, 400));
+    return next(new ErrorHandler(error, 400));
   }
 });
 
@@ -409,7 +436,7 @@ const deleteProfilePic = CatchAsyncError(async (req, res, next) => {
       success: true,
     });
   } catch (error) {
-    return next(new ErrorHandler(error.message, 400));
+    return next(new ErrorHandler(error, 400));
   }
 });
 
@@ -429,7 +456,7 @@ const getUserPurchaseDetails = CatchAsyncError(async (req, res, next) => {
       details,
     });
   } catch (error) {
-    return next(new ErrorHandler(error.message, 400));
+    return next(new ErrorHandler(error, 400));
   }
 });
 
@@ -451,4 +478,5 @@ module.exports = {
   verifyPassword,
   deleteProfilePic,
   getUserPurchaseDetails,
+  downloadStudentsData,
 };

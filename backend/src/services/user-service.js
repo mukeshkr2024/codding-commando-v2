@@ -51,6 +51,8 @@ const registerUserService = async (userData) => {
     const activationToken = createActivationToken(user);
     const activationCode = activationToken.activationCode;
 
+    console.log("activation code: " + activationCode);
+
     // Prepare data for email template
     const data = { user: { name: user.firstName }, activationCode };
 

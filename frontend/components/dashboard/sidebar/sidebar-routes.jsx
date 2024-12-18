@@ -9,6 +9,7 @@ import {
   UserCheck,
   Users,
   Sheet,
+  ClipboardCheck,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -47,6 +48,11 @@ const teacherRoutes = [
     icon: BarChart,
     label: "Analytics",
     href: "/teacher/analytics",
+  },
+  {
+    icon: ClipboardCheck,
+    label: "Enrollments",
+    href: "/teacher/enrollments",
   },
   {
     icon: PhoneCall,

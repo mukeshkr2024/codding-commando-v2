@@ -5,6 +5,8 @@ const morgan = require("morgan");
 const ApiRoutes = require("../routes");
 const ErrorMiddleware = require("../middleware/error");
 const publicRoutes = require("../routes/v1/public.routes");
+const sendMail = require("../../email");
+const seedDatabase = require("../scripts/seed");
 const app = express();
 // const rateLimit = require("express-rate-limit");
 
@@ -27,3 +29,17 @@ app.get("/test", (req, res) => {
 //error middleware
 app.use(ErrorMiddleware);
 module.exports = app;
+
+// (async () => {
+//   try {
+//     await sendMail(
+//       ["mukeshkumar@cloudprism.in"],
+//       "Test Email Subject",
+//       "Hello there! This is an optimized AWS SES email."
+//     );
+//   } catch (error) {
+//     console.error("Error sending email:", error);
+//   }
+// })();
+
+// seedDatabase();
