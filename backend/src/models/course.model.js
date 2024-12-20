@@ -71,6 +71,7 @@ const courseSchema = new Schema(
       type: String,
     },
     modules: [{ type: Schema.Types.ObjectId, ref: "Module" }],
+    isPaid: { type: Boolean, default: true },
   },
   {
     timestamps: true,

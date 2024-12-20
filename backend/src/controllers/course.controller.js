@@ -2,6 +2,7 @@ const CatchAsyncError = require("../middleware/catchAsyncError");
 const Course = require("../models/course.model");
 const Mentor = require("../models/mentors.model");
 const { Curriculum } = require("../models/program.model");
+const Strategy = require("../models/strategy.model");
 const User = require("../models/user.model");
 const {
   createCourseService,
@@ -70,7 +71,7 @@ const getAllCourses = CatchAsyncError(async (req, res, next) => {
   try {
     const courses = await Course.find({})
       .sort({ createdAt: "desc" })
-      .select("title duration isPublished createdAt");
+      .select("title duration isPublished createdAt isPaid");
 
     return res.status(200).json({
       success: true,

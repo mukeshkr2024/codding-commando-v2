@@ -28,6 +28,7 @@ const purchaseRouter = require("./v1/purchase.routes");
 const workshopRouter = require("./v1/workshop.routes");
 const enrollCourseRouter = require("./v1/enrolled-course.routes");
 const quizRouter = require("./v1/quiz.routes");
+const { enrollmentRouter } = require("./v1/enrollment.routes");
 
 const router = express.Router();
 const storage = multer.memoryStorage();
@@ -43,6 +44,8 @@ router.post("/upload", upload.single("image"), UploadImageApi);
 router.use("/users", userRouter);
 // courses routes
 router.use("/courses", courseRouter);
+// enrollments
+router.use("/enrollments", enrollmentRouter);
 // enrolled courses activities
 router.use("/enrolled/course", enrollCourseRouter);
 // course Links

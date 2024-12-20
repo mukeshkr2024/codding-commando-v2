@@ -1,6 +1,7 @@
 const CatchAsyncError = require("../middleware/catchAsyncError");
 const Chapter = require("../models/chapter.model");
 const Course = require("../models/course.model");
+const Enrollment = require("../models/enrollement.model");
 const UserProgress = require("../models/user-progress.model");
 const User = require("../models/user.model");
 const ErrorHandler = require("../utils/ErrorHandler");
@@ -190,10 +191,20 @@ const validateCourse = CatchAsyncError(async (req, res, next) => {
   }
 });
 
+const getAllEnrollments = CatchAsyncError(async (req, res, next) => {
+  try {
+    const enrollments = await Enrollment.find({});
+    res.status(200).json(enrollments);
+  } catch (error) {
+    return next(new ErrorHandler(error, error, 400));
+  }
+});
+
 module.exports = {
   getEnrolledCourseDetails,
   getAllDetails,
   getLessionDetails,
   chapterProgress,
   validateCourse,
+  getAllEnrollments,
 };

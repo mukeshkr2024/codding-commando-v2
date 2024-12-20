@@ -5,18 +5,29 @@ import InstallMentPriceForm from "./installment-price-form";
 import { PaymentCourseImage } from "./couse-payment-imageForm";
 import { PaymentDescriptionForm } from "./payment-description-form";
 import InstallmentSwitch from "./installment-switch";
+import { CourseType } from "./course-type";
 
-export const PaymentDetails = ({ initialData, courseId, onUpdateSucess }) => {
+export const PaymentDetails = ({
+  initialData,
+  courseId,
+  onUpdateSucess,
+  isPaid,
+}) => {
   const handleInstallmentModeSuccess = () => {
     onUpdateSucess();
   };
 
   return (
     <div>
-      <div className=" flex items-center gap-x-2">
+      <div className="flex items-center gap-x-2">
         <IconBadge icon={CircleDollarSign} />
         <h2 className="text-xl">Sell your course</h2>
       </div>
+      <CourseType
+        isPaid={isPaid}
+        courseId={courseId}
+        onSuccess={handleInstallmentModeSuccess}
+      />
       <FullPriceForm
         initialData={initialData}
         courseId={courseId}

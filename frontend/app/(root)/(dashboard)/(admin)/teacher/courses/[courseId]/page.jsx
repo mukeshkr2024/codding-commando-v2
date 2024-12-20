@@ -18,12 +18,14 @@ import { IconBadge } from "@/components/icon-bagde";
 import { useUserAccessToken } from "features/users/hooks/use-user-accessToken";
 import apiClient from "lib/api-client";
 import { LayoutDashboard, ListChecks, ListStart, Loader2 } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, use } from "react";
 
 const CourseIdPage = ({ params }) => {
   const [courseData, setCourseData] = useState(null);
   const [loading, setLoading] = useState(true);
   const { authToken } = useUserAccessToken();
+
+  const { courseId } = use(params);
 
   const fetchCourseData = useCallback(async () => {
     try {
@@ -32,20 +34,17 @@ const CourseIdPage = ({ params }) => {
           Authorization: `Bearer ${authToken}`,
         },
       };
-      const { data } = await apiClient.get(
-        `/courses/${params.courseId}`,
-        config,
-      );
+      const { data } = await apiClient.get(`/courses/${courseId}`, config);
       setCourseData(data?.course);
     } catch (error) {
     } finally {
       setLoading(false);
     }
-  }, [params.courseId, authToken]);
+  }, [courseId, authToken]);
 
   useEffect(() => {
     fetchCourseData();
-  }, [params.courseId, authToken, fetchCourseData]);
+  }, [courseId, authToken, fetchCourseData]);
 
   const requiredFields = [
     courseData?.title,
@@ -94,7 +93,7 @@ const CourseIdPage = ({ params }) => {
           </div>
           <CourseActions
             disabled={!isComplete}
-            courseId={params.courseId}
+            courseId={courseId}
             isPublished={courseData?.isPublished}
             onUpdateSucess={handleupdateSuccess}
           />
@@ -171,6 +170,7 @@ const CourseIdPage = ({ params }) => {
               initialData={courseData?.paymentDetail}
               courseId={courseData?._id}
               onUpdateSucess={handleupdateSuccess}
+              isPaid={courseData?.isPaid}
             />
             <div>
               <div className="flex items-center gap-x-2">

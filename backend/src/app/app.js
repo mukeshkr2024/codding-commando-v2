@@ -29,17 +29,3 @@ app.get("/test", (req, res) => {
 //error middleware
 app.use(ErrorMiddleware);
 module.exports = app;
-
-// (async () => {
-//   try {
-//     await sendMail(
-//       ["mukeshkumar@cloudprism.in"],
-//       "Test Email Subject",
-//       "Hello there! This is an optimized AWS SES email."
-//     );
-//   } catch (error) {
-//     console.error("Error sending email:", error);
-//   }
-// })();
-
-// seedDatabase();

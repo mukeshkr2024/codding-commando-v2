@@ -45,91 +45,39 @@ export const columns = [
     cell: ({ row }) => <div>{row.getValue("duration")}</div>,
   },
   {
-    accessorKey: "createdAt",
+    accessorKey: "enrolledAt",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Created At
+          Enrolled At
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => (
-      <div>{formatCreatedAtDate(row.getValue("createdAt"))}</div>
+      <div>{formatCreatedAtDate(row.getValue("enrolledAt"))}</div>
     ),
   },
   {
-    accessorKey: "isPublished",
+    accessorKey: "courseType",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Published
+          Course Type
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => {
-      const isPublished = row.getValue("isPublished") || false;
+      const { courseType } = row.original;
 
-      return (
-        <Badge className={cn("bg-slate-500", isPublished && "bg-sky-700")}>
-          {isPublished ? "Published" : "Draft"}
-        </Badge>
-      );
-    },
-  },
-  {
-    accessorKey: "isPaid",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Type
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => {
-      const isPaid = row.getValue("isPaid") || false;
-
-      return (
-        <Badge className={cn("bg-slate-500", isPaid && "bg-sky-700")}>
-          {isPaid ? "Paid" : "Free"}
-        </Badge>
-      );
-    },
-  },
-  {
-    id: "actions",
-    cell: ({ row }) => {
-      const { _id } = row.original;
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-4 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <Link href={`/teacher/courses/${_id}`}>
-              <DropdownMenuItem>
-                <Pencil className="mr-2 h-4 w-4" />
-                Edit
-              </DropdownMenuItem>
-            </Link>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
+      return <Badge className="bg-sky-700">{courseType}</Badge>;
     },
   },
 ];
