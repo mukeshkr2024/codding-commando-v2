@@ -34,10 +34,11 @@ const teacherRoutes = [
     label: "Courses",
     href: "/teacher/courses",
   },
+
   {
-    icon: UserCheck,
-    label: "Team Members",
-    href: "/teacher/mentors",
+    icon: BarChart,
+    label: "Analytics",
+    href: "/teacher/analytics",
   },
   {
     icon: Users,
@@ -45,14 +46,14 @@ const teacherRoutes = [
     href: "/teacher/students",
   },
   {
-    icon: BarChart,
-    label: "Analytics",
-    href: "/teacher/analytics",
-  },
-  {
     icon: ClipboardCheck,
     label: "Enrollments",
     href: "/teacher/enrollments",
+  },
+  {
+    icon: UserCheck,
+    label: "Team Members",
+    href: "/teacher/mentors",
   },
   {
     icon: PhoneCall,

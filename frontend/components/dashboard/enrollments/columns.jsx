@@ -16,6 +16,64 @@ import { formatCreatedAtDate } from "lib/format";
 
 export const columns = [
   {
+    accessorKey: "name",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Name
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const { userId } = row.original;
+      return (
+        <span>
+          {userId?.firstName} {userId?.lastName}
+        </span>
+      );
+    },
+  },
+  {
+    accessorKey: "email",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Email
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const { userId } = row.original;
+      return <span>{userId?.email}</span>;
+    },
+  },
+  {
+    accessorKey: "phone",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Phone
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const { userId } = row.original;
+      return <span>{userId?.phone}</span>;
+    },
+  },
+  {
     accessorKey: "title",
     header: ({ column }) => {
       return (
@@ -23,10 +81,14 @@ export const columns = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Title
+          Course
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
+    },
+    cell: ({ row }) => {
+      const { courseId } = row.original;
+      return <span>{courseId?.title || "N/A"}</span>;
     },
   },
   {
@@ -42,7 +104,10 @@ export const columns = [
         </Button>
       );
     },
-    cell: ({ row }) => <div>{row.getValue("duration")}</div>,
+    cell: ({ row }) => {
+      const { courseId } = row.original;
+      return <span>{courseId?.duration || "N/A"}</span>;
+    },
   },
   {
     accessorKey: "enrolledAt",

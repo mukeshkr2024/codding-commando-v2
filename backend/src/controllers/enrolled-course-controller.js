@@ -193,8 +193,38 @@ const validateCourse = CatchAsyncError(async (req, res, next) => {
 
 const getAllEnrollments = CatchAsyncError(async (req, res, next) => {
   try {
-    const enrollments = await Enrollment.find({});
-    res.status(200).json(enrollments);
+    const { startDate, endDate, page = 1, limit = 10 } = req.query;
+
+    const query = {};
+
+    if (startDate && endDate) {
+      query.createdAt = {
+        $gte: new Date(startDate),
+        $lte: new Date(endDate),
+      };
+    }
+
+    const enrollments = await Enrollment.find(query)
+      .populate({
+        path: "courseId",
+        select: "title duration",
+      })
+      .populate({
+        path: "userId",
+        select: "firstName lastName email phone",
+      })
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(Number(limit));
+
+    const totalEnrollments = await Enrollment.countDocuments(query);
+
+    res.status(200).json({
+      enrollments,
+      totalEnrollments,
+      totalPages: Math.ceil(totalEnrollments / limit),
+      currentPage: Number(page),
+    });
   } catch (error) {
     return next(new ErrorHandler(error, error, 400));
   }

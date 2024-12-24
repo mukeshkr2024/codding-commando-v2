@@ -49,7 +49,7 @@ export function DataTable({
 
   return (
     <div>
-      {inputEnabled && (
+      {/* {inputEnabled && (
         <div className="flex flex-col justify-between space-y-4 py-4 md:flex-row md:items-center">
           <Input
             placeholder="Find Students...."
@@ -67,7 +67,7 @@ export function DataTable({
             {isDownloading ? "Downloading..." : "Download"} <Download />
           </Button>
         </div>
-      )}
+      )} */}
       <div className="rounded-md border">
         <Table>
           <TableHeader>

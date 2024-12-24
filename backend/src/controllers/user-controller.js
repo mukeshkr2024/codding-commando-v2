@@ -101,7 +101,9 @@ const updateProfileController = async (req, res) => {
 
 const getAllStudents = CatchAsyncError(async (req, res, next) => {
   try {
-    const { startDate, endDate, page = 1, limit = 10 } = req.query;
+    const { startDate, endDate, page = 1, limit = 10, search } = req.query;
+
+    console.log("search", search);
 
     const query = { role: "student" };
 
@@ -116,6 +118,8 @@ const getAllStudents = CatchAsyncError(async (req, res, next) => {
       .limit(Number(limit));
 
     const totalStudents = await User.countDocuments(query);
+
+    console.log("totalStudents", totalStudents);
 
     return res.status(200).json({
       success: true,

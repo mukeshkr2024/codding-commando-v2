@@ -9,7 +9,7 @@ import apiClient from "lib/api-client";
 import { Download, Loader2 } from "lucide-react";
 import { use, useEffect, useState } from "react";
 
-const MentorPage = ({ searchParams }) => {
+const StudentsClient = ({ startDate, endDate }) => {
   const [data, setData] = useState([]);
   const { authToken } = useUserAccessToken();
   const [loading, setLoading] = useState(true);
@@ -17,8 +17,6 @@ const MentorPage = ({ searchParams }) => {
   const [totalPages, setTotalPages] = useState(0);
   const [isDownloading, setIsDownloading] = useState(false);
   const [searchQuery, setSearchQuery] = useState(null);
-
-  const { startDate, endDate } = use(searchParams);
 
   // Fetch data function
   const fetchData = async (url) => {
@@ -59,10 +57,10 @@ const MentorPage = ({ searchParams }) => {
 
   // Handle search action with delay
   const handleSearch = () => {
-    setLoading(true);
+    setLoading(true); // Show loading indicator
     setTimeout(() => {
-      loadStudentsData();
-    }, 2000);
+      loadStudentsData(); // Call the load function after delay
+    }, 2000); // Delay of 2 seconds
   };
 
   // Download data function
@@ -120,24 +118,21 @@ const MentorPage = ({ searchParams }) => {
 
   return (
     <div className="p-6">
-      <div className="flex w-full items-center justify-between pb-4">
-        <div className="flex h-full gap-2">
+      <div className="flex flex-col justify-between space-y-4 pb-4 md:flex-row md:items-center">
+        <div className="flex gap-2">
           <Input
             placeholder="Find Students...."
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-96 cursor-pointer"
+            className="w-96"
           />
           <Button
             onClick={handleSearch}
             disabled={!searchQuery}
-            className="w-24 cursor-pointer"
+            className="w-24"
           >
             Search
-          </Button>
-          <Button disabled={!searchQuery} className="w-24">
-            Clear Filters
           </Button>
         </div>
         <Button
@@ -182,4 +177,4 @@ const MentorPage = ({ searchParams }) => {
   );
 };
 
-export default MentorPage;
+export default StudentsClient;

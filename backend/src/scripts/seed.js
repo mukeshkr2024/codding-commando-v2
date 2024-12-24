@@ -12,11 +12,10 @@ async function seedDatabase() {
     const firstName = faker.person.firstName();
     const lastName = faker.person.lastName();
     const email = faker.internet.email(firstName, lastName);
-    const phone = faker.phone.number("##########"); // Generates a 10-digit number
+    const phone = faker.phone.number("##########");
     const password = await bcrypt.hash(faker.internet.password(), saltRounds);
 
-    // Randomly assign createdAt date (current or past)
-    const createdAt = faker.date.past(Math.random() * 5); // Up to 5 years in the past
+    const createdAt = faker.date.past(Math.random() * 5);
 
     students.push({
       firstName,
@@ -25,7 +24,7 @@ async function seedDatabase() {
       phone,
       password,
       createdAt,
-      updatedAt: createdAt, // Set updatedAt to the same as createdAt for initial insert
+      updatedAt: createdAt,
       role: "student",
       isVerified: true,
       isBlocked: false,
