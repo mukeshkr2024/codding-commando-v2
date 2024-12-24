@@ -141,7 +141,7 @@ export function AssignMentorForm({ initialData, courseId, onUpdateSucess }) {
               {initialData?.mentors?.map((mentor) => (
                 <div
                   key={mentor._id}
-                  className="flex items-center justify-between rounded-lg border border-slate-300 px-5 shadow-sm "
+                  className="flex items-center justify-between rounded-lg border border-slate-300 px-5 shadow-sm"
                 >
                   <p className="text-sm text-slate-700">{mentor.name}</p>
                   <Button

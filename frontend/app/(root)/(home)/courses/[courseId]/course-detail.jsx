@@ -11,12 +11,12 @@ import { ProgramCurricullumList } from "@/components/courses/program-curriculum-
 import { Loader2 } from "lucide-react";
 import { redirect } from "next/navigation";
 
-const CourseDetails = ({ params }) => {
+const CourseDetails = ({ courseId }) => {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(true);
   async function getCourseById() {
     try {
-      const { data } = await apiClient.get(`/course/${params.courseId}`);
+      const { data } = await apiClient.get(`/course/${courseId}`);
       setResult(data?.course);
     } catch (error) {
       // ErrorToast(error);
@@ -37,13 +37,13 @@ const CourseDetails = ({ params }) => {
     );
   }
 
-  if (!result) {
-    return redirect("/courses");
-  }
+  // if (!result) {
+  //   return redirect("/courses");
+  // }
 
   return (
-    <div className="flex  w-full flex-col  overflow-hidden ">
-      <div className="relative flex w-full flex-col items-center justify-center bg-dark-purple px-4  py-12 text-center text-white">
+    <div className="flex w-full flex-col overflow-hidden">
+      <div className="relative flex w-full flex-col items-center justify-center bg-dark-purple px-4 py-12 text-center text-white">
         <div className="absolute bottom-[-100px] right-20 hidden md:flex">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +72,7 @@ const CourseDetails = ({ params }) => {
             </defs>
           </svg>
         </div>
-        <h1 className=" mt-2 max-w-5xl text-3xl font-semibold leading-[1.3]  sm:text-4xl md:mt-6 md:text-5xl lg:leading-[1.3] xl:text-6xl">
+        <h1 className="mt-2 max-w-5xl text-3xl font-semibold leading-[1.3] sm:text-4xl md:mt-6 md:text-5xl lg:leading-[1.3] xl:text-6xl">
           {result?.title}
         </h1>
         <div className="mt-4 flex flex-col items-center gap-2 text-center lg:mt-8">
@@ -84,7 +84,7 @@ const CourseDetails = ({ params }) => {
           </p>
           <p className="text-base md:text-lg xl:text-xl">
             Training Mode:
-            <span className=" font-semibold  capitalize text-[#F5478E]">
+            <span className="font-semibold capitalize text-[#F5478E]">
               {result?.mode}
             </span>
           </p>
@@ -99,7 +99,7 @@ const CourseDetails = ({ params }) => {
             </button>
           </Link>
           <Link href="/demo">
-            <button className="button-pink-shadow cursor-pointer rounded-3xl border border-white bg-transparent px-10 py-1.5 text-base transition-transform hover:scale-105 sm:text-lg  ">
+            <button className="button-pink-shadow cursor-pointer rounded-3xl border border-white bg-transparent px-10 py-1.5 text-base transition-transform hover:scale-105 sm:text-lg">
               Book Yourself A{" "}
               <span className="font-semibold text-pink-500">Free</span> Demo
             </button>
@@ -107,8 +107,8 @@ const CourseDetails = ({ params }) => {
         </div>
       </div>
       {result?.strategy && (
-        <div className="flex w-full flex-col items-center justify-center gap-4 bg-light-white px-4 py-12 text-center md:gap-6 md:py-16  lg:gap-12">
-          <h1 className="text-3xl  font-bold capitalize sm:text-4xl  md:text-5xl lg:text-6xl ">
+        <div className="flex w-full flex-col items-center justify-center gap-4 bg-light-white px-4 py-12 text-center md:gap-6 md:py-16 lg:gap-12">
+          <h1 className="text-3xl font-bold capitalize sm:text-4xl md:text-5xl lg:text-6xl">
             Curriculum Strategy
           </h1>
           <div className="grid gap-2 md:grid-cols-2 md:gap-6 lg:gap-8 xl:gap-8">
@@ -122,12 +122,12 @@ const CourseDetails = ({ params }) => {
       {/* Mentors  */}
       {result?.mentors && (
         <section
-          className="flex w-full flex-col items-center justify-center bg-light-white bg-cover px-8 py-4 pb-14 pt-16 text-center xl:pb-20 "
+          className="flex w-full flex-col items-center justify-center bg-light-white bg-cover px-8 py-4 pb-14 pt-16 text-center xl:pb-20"
           style={{
             backgroundImage: 'url("assets/vector/mentor-bg-svg.svg")',
           }}
         >
-          <h3 className="max-w-xs text-6xl font-semibold sm:max-w-4xl md:text-7xl xl:text-8xl ">
+          <h3 className="max-w-xs text-6xl font-semibold sm:max-w-4xl md:text-7xl xl:text-8xl">
             Meet Your Mentor
           </h3>
           <MentorDetails mentors={result?.mentors} />
