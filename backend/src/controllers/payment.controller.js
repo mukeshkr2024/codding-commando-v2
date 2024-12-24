@@ -131,6 +131,14 @@ const createPaymentOrder = CatchAsyncError(async (req, res, next) => {
       course: course._id,
     });
 
+    if (process.env.RAZORPAY_API_KEY) {
+      throw new Error("Razorpay key not found");
+    }
+
+    if (process.env.RAZORPAY_API_SECRET) {
+      throw new Error("Razorpay secret not found");
+    }
+
     // razorpay instance
     const instance = new RazorPay({
       key_id: process.env.RAZORPAY_API_KEY,

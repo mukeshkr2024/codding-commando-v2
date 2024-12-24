@@ -3,7 +3,7 @@ import React from "react";
 export const PaymentCard = ({ title, price, desc }) => {
   return (
     <div
-      className="flex w-[330px] cursor-pointer flex-col gap-2 rounded-[15px] border   border-[#F5478E] p-6"
+      className="flex w-[330px] cursor-pointer flex-col gap-2 rounded-[15px] border border-[#F5478E] p-6"
       style={{
         background:
           "linear-gradient(244deg, rgba(217, 217, 217, 0.21) 13.04%, rgba(217, 217, 217, 0.00) 86.65%)",
@@ -11,7 +11,7 @@ export const PaymentCard = ({ title, price, desc }) => {
         backdropFilter: "blur(7.599999904632568px)",
       }}
     >
-      <div className="flex items-center justify-between ">
+      <div className="flex items-center justify-between">
         <div className="">
           {price && (
             <h2 className="text-2xl font-bold text-[#F5478E]">Rs {price}</h2>
@@ -71,10 +71,10 @@ export const PaymentCard = ({ title, price, desc }) => {
         </svg>
       </div>
       <div className="mt-1 flex justify-between">
-        <div className="h-2  w-16 rounded-[2px] bg-[#493E51]"></div>
-        <div className="h-2 w-16  rounded-[2px] bg-[#493E51]"></div>
+        <div className="h-2 w-16 rounded-[2px] bg-[#493E51]"></div>
+        <div className="h-2 w-16 rounded-[2px] bg-[#493E51]"></div>
       </div>
-      <div className="h-2  w-8 rounded-[2px] bg-[#493E51]"></div>
+      <div className="h-2 w-8 rounded-[2px] bg-[#493E51]"></div>
     </div>
   );
 };
