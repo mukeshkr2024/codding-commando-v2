@@ -131,21 +131,21 @@ const createPaymentOrder = CatchAsyncError(async (req, res, next) => {
       course: course._id,
     });
 
-    if (!process.env.RAZORPAY_API_KEY) {
+    if (!process.env.RAZORPAY_API_KEY_SECRET) {
       throw new Error("Razorpay key not found");
     }
 
-    if (!process.env.RAZORPAY_API_SECRET) {
+    if (!process.env.RAZORPAY_API_SECRET_KEY) {
       throw new Error("Razorpay secret not found");
     }
 
-    console.log(process.env.RAZORPAY_API_KEY);
-    console.log(process.env.RAZORPAY_API_SECRET);
+    console.log(process.env.RAZORPAY_API_KEY_SECRET);
+    console.log(process.env.RAZORPAY_API_SECRET_KEY);
 
     // razorpay instance
     const instance = new RazorPay({
-      key_id: process.env.RAZORPAY_API_KEY,
-      key_secret: process.env.RAZORPAY_API_SECRET,
+      key_id: process.env.RAZORPAY_API_KEY_SECRET,
+      key_secret: process.env.RAZORPAY_API_SECRET_KEY,
     });
 
     let price;
@@ -206,7 +206,7 @@ const verifyPaymentOrder = CatchAsyncError(async (req, res, next) => {
     const body = `${razorpay_order_id}|${razorpay_payment_id}`;
 
     const expectedSignature = crypto
-      .createHmac("sha256", process.env.RAZORPAY_API_SECRET)
+      .createHmac("sha256", process.env.RAZORPAY_API_SECRET_KEY)
       .update(body)
       .digest("hex");
 

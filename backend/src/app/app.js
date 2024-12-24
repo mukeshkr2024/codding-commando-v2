@@ -26,6 +26,9 @@ app.get("/test", (req, res) => {
   res.send("Welcome Back!");
 });
 
+console.log("RAZORPAY_API_KEY_SECRET", process.env.RAZORPAY_API_KEY_SECRET);
+console.log("RAZORPAY_API_KEY_ID", process.env.RAZORPAY_API_SECRET_KEY);
+
 //error middleware
 app.use(ErrorMiddleware);
 module.exports = app;
