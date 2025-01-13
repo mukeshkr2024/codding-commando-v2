@@ -1,5 +1,5 @@
 import { CourseSlider } from "@/components/course-slider";
-import { MeetMentor } from "@/components/shared/meet-mentor";
+// import { MeetMentor } from "@/components/shared/meet-mentor";
 import { chooseusData, trainingData } from "lib/data";
 import Image from "next/image";
 import Link from "next/link";
@@ -32,14 +32,14 @@ export const metadata = {
 export default async function HomePage() {
   return (
     <>
-      <section className="flex min-h-[600px] flex-col bg-dark-purple text-white  md:flex-row xl:max-h-[90vh] xl:py-12 xl:pb-16">
-        <div className="flex flex-col space-y-6 p-4 px-8 md:w-1/2 xl:space-y-8  xl:p-20">
+      <section className="flex min-h-[600px] flex-col bg-dark-purple text-white md:flex-row xl:max-h-[90vh] xl:py-12 xl:pb-16">
+        <div className="flex flex-col space-y-6 p-4 px-8 md:w-1/2 xl:space-y-8 xl:p-20">
           <Image
             src="/assets/shapping-svg.svg"
             alt="Shapping"
             height={200}
             width={200}
-            className="w-full "
+            className="w-full"
           />
           <h1 className="mb-4 md:text-lg xl:text-xl">
             Coding Commando is a community which garnishes your skills and will
@@ -50,7 +50,7 @@ export default async function HomePage() {
           <div className="md4:space-x-6 flex flex-col space-y-4 py-3 md:flex-row md:space-y-0 md:py-0 xl:space-x-7">
             <Link href="/contact-us">
               <button
-                className="w-44  rounded-[45px] bg-[#F5478E] py-2 font-semibold transition-transform hover:scale-105 focus:border-blue-300 focus:outline-none focus:ring md:text-xl md:font-bold xl:px-2 xl:py-3"
+                className="w-44 rounded-[45px] bg-[#F5478E] py-2 font-semibold transition-transform hover:scale-105 focus:border-blue-300 focus:outline-none focus:ring md:text-xl md:font-bold xl:px-2 xl:py-3"
                 style={{ boxShadow: "1.5px 1.5px white" }}
               >
                 <p>Talk To Us</p>
@@ -82,7 +82,7 @@ export default async function HomePage() {
         </div>
       </section>
       <section
-        className="shrink-0 bg-light-white  bg-opacity-[100%] bg-contain bg-no-repeat p-8 xl:px-20"
+        className="shrink-0 bg-light-white bg-opacity-[100%] bg-contain bg-no-repeat p-8 xl:px-20"
         style={{
           backgroundImage: 'url("assets/vector/learn-bg-svg.svg")',
         }}
@@ -93,7 +93,7 @@ export default async function HomePage() {
               <h2 className="text-start text-5xl font-bold leading-[60px] sm:text-6xl md:text-7xl lg:text-7xl">
                 Learn <br /> From Us
               </h2>
-              <p className="text-left text-base font-normal leading-6 text-gray-700 md:text-lg md:leading-7 lg:text-xl lg:leading-8  ">
+              <p className="text-left text-base font-normal leading-6 text-gray-700 md:text-lg md:leading-7 lg:text-xl lg:leading-8">
                 We aim to democratize coding education by reaching every corner
                 of India, through our comprehensive online courses. Learn from
                 industry experts and establish yourself in the field with Coding
@@ -115,26 +115,26 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-      <section className=" w-full bg-light-white xl:p-20">
-        <div className="flex w-full flex-col items-center justify-center  space-y-8 md:space-y-10 xl:space-y-12">
+      <section className="w-full bg-light-white xl:p-20">
+        <div className="flex w-full flex-col items-center justify-center space-y-8 md:space-y-10 xl:space-y-12">
           <h4 className="text-center text-4xl font-bold leading-[45px] sm:text-5xl sm:leading-[60px] md:mb-6 md:text-7xl lg:text-7xl">
             Explore Our Programs
           </h4>
           <CourseSlider />
         </div>
       </section>
-      <MeetMentor />
+      {/* <MeetMentor /> */}
       <section className="bg-dark-purple px-8 text-white xl:px-20">
-        <div className="flex flex-col items-center justify-center px-2 py-10 lg:py-12 ">
+        <div className="flex flex-col items-center justify-center px-2 py-10 lg:py-12">
           <h2 className="text-center text-3xl font-bold leading-[45px] sm:text-5xl sm:leading-[60px] md:mb-6 md:text-7xl lg:text-7xl">
             Why Choose Us
           </h2>
-          <div className="mt-8  flex flex-col space-y-6 sm:flex-row sm:space-x-6 sm:space-y-0 lg:space-x-12 ">
+          <div className="mt-8 flex flex-col space-y-6 sm:flex-row sm:space-x-6 sm:space-y-0 lg:space-x-12">
             {chooseusData &&
               chooseusData.map((data) => (
                 <div
                   key={data._id}
-                  className=" flex w-full flex-col   items-center justify-center space-y-6 rounded-2xl px-6 py-14 text-center"
+                  className="flex w-full flex-col items-center justify-center space-y-6 rounded-2xl px-6 py-14 text-center"
                   style={{
                     background:
                       " linear-gradient(267deg, rgba(255, 255, 255, 0.13) -2.1%, rgba(255, 255, 255, 0.00) 121.83%)",
@@ -168,7 +168,7 @@ export default async function HomePage() {
                       key={training.title}
                       className="flex flex-col space-y-4"
                     >
-                      <h4 className=" py-2 text-2xl font-semibold leading-7 text-pink-500 lg:text-4xl">
+                      <h4 className="py-2 text-2xl font-semibold leading-7 text-pink-500 lg:text-4xl">
                         {training.title}
                       </h4>
                       <p className="text-base font-normal lg:text-lg">

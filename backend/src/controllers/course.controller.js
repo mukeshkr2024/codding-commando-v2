@@ -218,7 +218,7 @@ const getCourseById = CatchAsyncError(async (req, res, next) => {
     const course = await Course.findById({ _id: courseId })
       .populate({
         path: "program_curriculum",
-        select: "title",
+        select: "title duration",
         match: { isPublished: true },
         populate: {
           path: "description",

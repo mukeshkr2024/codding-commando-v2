@@ -1,7 +1,6 @@
 "use client";
 
 import { Banner } from "@/components/banner";
-import { AssignMentorForm } from "@/components/dashboard/courses/courseId/assign-mentor-form";
 import { AboutForm } from "@/components/dashboard/courses/courseId/basicdata/about-form";
 import { CourseImage } from "@/components/dashboard/courses/courseId/basicdata/course-image-form";
 import { DescriptionForm } from "@/components/dashboard/courses/courseId/basicdata/description-form";
@@ -13,12 +12,11 @@ import { CourseBanner } from "@/components/dashboard/courses/courseId/course-ban
 import { CourseModule } from "@/components/dashboard/courses/courseId/modules/CourseModule";
 import { PaymentDetails } from "@/components/dashboard/courses/courseId/payments/payment-details";
 import { ProgramsForm } from "@/components/dashboard/courses/courseId/programs/ProgramsForm";
-import { StrategyForm } from "@/components/dashboard/courses/courseId/strategy/strategy-form";
 import { IconBadge } from "@/components/icon-bagde";
 import { useUserAccessToken } from "features/users/hooks/use-user-accessToken";
 import apiClient from "lib/api-client";
-import { LayoutDashboard, ListChecks, ListStart, Loader2 } from "lucide-react";
-import { useCallback, useEffect, useState, use } from "react";
+import { LayoutDashboard, ListChecks, Loader2 } from "lucide-react";
+import { use, useCallback, useEffect, useState } from "react";
 
 const CourseIdPage = ({ params }) => {
   const [courseData, setCourseData] = useState(null);
@@ -54,8 +52,8 @@ const CourseIdPage = ({ params }) => {
     courseData?.mode,
     courseData?.about,
     courseData?.program_curriculum.some((program) => program.isPublished),
-    courseData?.strategy.some((item) => item.isPublished),
-    courseData?.mentors.some((mentor) => mentor),
+    // courseData?.strategy.some((item) => item.isPublished),
+    // courseData?.mentors.some((mentor) => mentor),
   ];
 
   const totalFields = requiredFields.length;
@@ -135,11 +133,11 @@ const CourseIdPage = ({ params }) => {
               courseId={courseData?._id}
               onUpdateSucess={handleupdateSuccess}
             />
-            <AssignMentorForm
+            {/* <AssignMentorForm
               initialData={courseData}
               courseId={courseData?._id}
               onUpdateSucess={handleupdateSuccess}
-            />
+            /> */}
 
             <div className="mt-6">
               <div className="flex items-center gap-x-2">
@@ -183,7 +181,7 @@ const CourseIdPage = ({ params }) => {
                 onUpdateSucess={handleupdateSuccess}
               />
             </div>
-            <div>
+            {/* <div>
               <div className="flex items-center gap-x-2">
                 <IconBadge icon={ListStart} />
                 <h2 className="text-xl"> Curriculum strategy</h2>
@@ -193,7 +191,7 @@ const CourseIdPage = ({ params }) => {
                 courseId={courseData?._id}
                 onUpdateSucess={handleupdateSuccess}
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

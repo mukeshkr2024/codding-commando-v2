@@ -32,12 +32,12 @@ export const MeetMentor = () => {
 
   return (
     <section
-      className="flex w-full flex-col items-center justify-center bg-light-white bg-cover px-8 py-4 pb-8 pt-16 text-center xl:pb-20 "
+      className="flex w-full flex-col items-center justify-center bg-light-white bg-cover px-8 py-4 pb-8 pt-16 text-center xl:pb-20"
       style={{
         backgroundImage: 'url("assets/vector/mentor-bg-svg.svg")',
       }}
     >
-      <h3 className=" text-center text-4xl font-bold leading-[45px] sm:text-5xl sm:leading-[60px] md:mb-6 md:text-7xl lg:text-7xl">
+      <h3 className="text-center text-4xl font-bold leading-[45px] sm:text-5xl sm:leading-[60px] md:mb-6 md:text-7xl lg:text-7xl">
         Meet Your Mentor
       </h3>
 

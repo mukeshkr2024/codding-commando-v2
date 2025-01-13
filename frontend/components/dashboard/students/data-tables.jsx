@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import {
   flexRender,
   getCoreRowModel,
@@ -9,6 +8,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import * as React from "react";
 
 import {
   Table,
@@ -18,9 +18,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Download } from "lucide-react";
 
 export function DataTable({
   columns,

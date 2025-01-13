@@ -3,12 +3,18 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-export const ProgramCurricullumCard = ({ title, description }) => {
+export const ProgramCurricullumCard = ({
+  title,
+  description,
+  duration = 0,
+}) => {
   const [open, setOpen] = useState(false);
+
+  console.log("0", duration);
 
   return (
     <div
-      className=" w-full max-w-6xl rounded-[36px] border border-[#9662D9]"
+      className="w-full max-w-6xl rounded-[36px] border border-[#9662D9]"
       style={{
         background:
           "linear-gradient(267deg, rgba(255, 255, 255, 0.75) -2.1%, rgba(255, 255, 255, 0.00) 121.83%)",
@@ -16,14 +22,19 @@ export const ProgramCurricullumCard = ({ title, description }) => {
       }}
     >
       <div className="flex w-full justify-between px-4 py-2.5">
-        <div className="flex gap-3">
+        <div className="flex w-full items-center gap-3">
           <Image
             src="/assets/icons/vector-24.svg"
             alt="Arrow"
             height={25}
             width={25}
           />
-          <h2 className="text-lg font-semibold md:text-xl">{title}</h2>
+          <div className="mr-5 flex w-full items-center justify-between">
+            <h2 className="text-lg font-semibold md:text-xl">{title}</h2>{" "}
+            {duration !== 0 && (
+              <span className="font-semibold">{duration} min</span>
+            )}
+          </div>
         </div>
 
         <Image

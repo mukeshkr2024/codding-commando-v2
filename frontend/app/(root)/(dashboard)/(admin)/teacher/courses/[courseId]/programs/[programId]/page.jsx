@@ -3,6 +3,7 @@
 import { Banner } from "@/components/banner";
 import { ProgramActions } from "@/components/dashboard/courses/courseId/programs/program-actions";
 import { ProgramDescriptionForm } from "@/components/dashboard/courses/courseId/programs/program-description-form";
+import { ProgramDurationForm } from "@/components/dashboard/courses/courseId/programs/program-duration-form";
 import { ProgramTitleForm } from "@/components/dashboard/courses/courseId/programs/program-title-form";
 // import { ErrorToast } from "@/components/error-toast";
 import { IconBadge } from "@/components/icon-bagde";
@@ -114,6 +115,14 @@ const ProgramId = ({ params }) => {
               />
             </div>
             <ProgramDescriptionForm
+              initialData={programData}
+              courseId={params.courseId}
+              programId={params.programId}
+              onUpdateSucess={onUpdateSucess}
+            />
+          </div>
+          <div className="mt-12">
+            <ProgramDurationForm
               initialData={programData}
               courseId={params.courseId}
               programId={params.programId}

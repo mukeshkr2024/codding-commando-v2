@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { useUserAccessToken } from "features/users/hooks/use-user-accessToken";
 import apiClient from "lib/api-client";
 import { Download, Loader2 } from "lucide-react";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const StudentsClient = ({ startDate, endDate }) => {
   const [data, setData] = useState([]);

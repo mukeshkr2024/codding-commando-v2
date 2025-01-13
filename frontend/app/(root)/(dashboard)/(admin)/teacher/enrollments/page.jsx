@@ -17,7 +17,7 @@ const Enrollments = ({ searchParams }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [searchQuery, setSearchQuery] = useState(null);
-  const [isDownloading, setIsDownloading] = useState(false);
+  const [isDownloading] = useState(false);
 
   const { startDate, endDate } = use(searchParams);
 

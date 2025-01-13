@@ -1,15 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 
-import apiClient from "lib/api-client";
-import { CurriculumStrategyCard } from "@/components/shared/card/curriculum-strategy-card";
 import { PaymentDetails } from "@/components/courses/payment-detail";
-import { MentorDetails } from "@/components/courses/mentor-details";
 import { ProgramCurricullumList } from "@/components/courses/program-curriculum-list";
+import apiClient from "lib/api-client";
 import { Loader2 } from "lucide-react";
-import { redirect } from "next/navigation";
 
 const CourseDetails = ({ courseId }) => {
   const [result, setResult] = useState(null);
@@ -106,7 +103,7 @@ const CourseDetails = ({ courseId }) => {
           </Link>
         </div>
       </div>
-      {result?.strategy && (
+      {/* {result?.strategy && (
         <div className="flex w-full flex-col items-center justify-center gap-4 bg-light-white px-4 py-12 text-center md:gap-6 md:py-16 lg:gap-12">
           <h1 className="text-3xl font-bold capitalize sm:text-4xl md:text-5xl lg:text-6xl">
             Curriculum Strategy
@@ -117,10 +114,10 @@ const CourseDetails = ({ courseId }) => {
             ))}
           </div>
         </div>
-      )}
+      )} */}
       <ProgramCurricullumList result={result} />
       {/* Mentors  */}
-      {result?.mentors && (
+      {/* {result?.mentors && (
         <section
           className="flex w-full flex-col items-center justify-center bg-light-white bg-cover px-8 py-4 pb-14 pt-16 text-center xl:pb-20"
           style={{
@@ -132,7 +129,7 @@ const CourseDetails = ({ courseId }) => {
           </h3>
           <MentorDetails mentors={result?.mentors} />
         </section>
-      )}
+      )} */}
       <PaymentDetails
         title={result?.title}
         {...result?.paymentDetail}

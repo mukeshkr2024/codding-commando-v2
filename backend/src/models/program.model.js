@@ -8,6 +8,11 @@ const curriculumSchema = new Schema({
     required: true,
     index: true,
   },
+  duration: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
   title: {
     type: String,
     required: true,
