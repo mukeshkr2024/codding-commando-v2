@@ -48,9 +48,12 @@ const createOrderPayment = CatchAsyncError(async (req, res, next) => {
       return next(new ErrorHandler("Workshop not found", 404));
     }
 
+    console.log("RAZORPAY_API_KEY_SECRET", RAZORPAY_API_KEY_SECRET);
+    console.log("RAZORPAY_API_SECRET_KEY", RAZORPAY_API_SECRET_KEY);
+
     const instance = new RazorPay({
-      key_id: process.env.RAZORPAY_API_KEY,
-      key_secret: process.env.RAZORPAY_API_SECRET,
+      key_id: process.env.RAZORPAY_API_KEY_SECRET,
+      key_secret: process.env.RAZORPAY_API_SECRET_KEY,
     });
 
     const payment_capture = 1;
