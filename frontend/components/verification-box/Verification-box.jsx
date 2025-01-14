@@ -27,7 +27,7 @@ export const VerificationBox = ({ toggleOtpBox, token, courseId, method }) => {
       setIsloading(true);
       const { data } = await apiClient.post(
         `/payment/create-order/${courseId}`,
-        orderData
+        orderData,
       );
       toggleOtpBox();
 
@@ -57,12 +57,12 @@ export const VerificationBox = ({ toggleOtpBox, token, courseId, method }) => {
           try {
             const verifyResponse = await apiClient.post(
               `/payment/${courseId}/verify`,
-              responseData
+              responseData,
             );
 
             if (verifyResponse?.data?.success === true) {
               router.push(
-                `/paymentsuccess?paymentid=${response.razorpay_payment_id}&orderid=${response.razorpay_order_id}&accessToken=${verifyResponse?.data?.accessToken}`
+                `/paymentsuccess?paymentid=${response.razorpay_payment_id}&orderid=${response.razorpay_order_id}&accessToken=${verifyResponse?.data?.accessToken}`,
               );
             }
           } catch (error) {

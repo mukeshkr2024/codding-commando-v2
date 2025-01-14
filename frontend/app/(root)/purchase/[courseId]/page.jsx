@@ -35,6 +35,8 @@ const CoursePaymentPage = ({ params, searchParams }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [showOtpBox, setShowOtpBox] = useState(false);
   const [token, setToken] = useState(null);
+  const [couponCode, setCouponCode] = useState("");
+  const [discountedPrice, setDiscountedPrice] = useState(null);
 
   let paymentMethod = searchParams?.method;
 
@@ -59,7 +61,7 @@ const CoursePaymentPage = ({ params, searchParams }) => {
     const fetchCourseDetail = async () => {
       try {
         const { data } = await apiClient.get(
-          `/payment/course/${params?.courseId}`
+          `/payment/course/${params?.courseId}`,
         );
         setCourseData(data?.course);
       } catch (error) {
@@ -72,16 +74,30 @@ const CoursePaymentPage = ({ params, searchParams }) => {
     fetchCourseDetail();
   }, [params?.courseId]);
 
+  const applyCoupon = async () => {
+    try {
+      const { data } = await apiClient.post("/payment/apply-coupon", {
+        courseId: params?.courseId,
+        couponCode,
+        paymentMethod,
+      });
+      setDiscountedPrice(data.discountedPrice);
+    } catch (error) {
+      ErrorToast(error);
+    }
+  };
+
   const submitHandler = async (data) => {
     const requestData = {
       ...data,
       paymentMethod,
+      couponCode: discountedPrice ? couponCode : undefined,
     };
 
     try {
       const { data } = await apiClient.post(
         `/payment/order-request`,
-        requestData
+        requestData,
       );
       setShowOtpBox(true);
       setToken(data?.token);
@@ -105,11 +121,11 @@ const CoursePaymentPage = ({ params, searchParams }) => {
   return (
     <>
       <div
-        className={`relative h-full w-full bg-gray-200  md:py-4 ${
+        className={`relative h-full w-full bg-gray-200 md:py-4 ${
           inter.className
         } ${showOtpBox ? "blur-sm" : ""}`}
       >
-        <div className="m-auto max-w-5xl ">
+        <div className="m-auto max-w-5xl">
           <div className="rounded-md bg-dark-purple p-4">
             <Image
               alt="Coding commando"
@@ -156,27 +172,56 @@ const CoursePaymentPage = ({ params, searchParams }) => {
                 height={800}
                 className="md:p-2"
               />
+
               <div className="mt-6 flex w-full flex-col gap-1">
                 <h2 className="text-xl font-medium">{courseData?.title}</h2>
                 <div className="mt-2 flex w-full flex-col px-2">
                   <div className="flex w-full justify-between border-b py-2">
                     <p className="text-lg font-semibold">Price</p>
-                    <span> ₹{price}</span>
+                    <span>
+                      {discountedPrice ? (
+                        <>
+                          <span className="text-gray-500 line-through">
+                            ₹{price}
+                          </span>{" "}
+                          <span className="text-green-600">
+                            ₹{discountedPrice}
+                          </span>
+                        </>
+                      ) : (
+                        `₹${price}`
+                      )}
+                    </span>
                   </div>
-                  <div className="flex w-full justify-between py-2 ">
+                  <div className="flex w-full justify-between py-2">
                     <p className="text-lg font-semibold text-green-600">
                       Total
                     </p>
                     <span className="text-lg font-semibold text-green-600">
-                      ₹{price}
+                      ₹{discountedPrice || price}
                     </span>{" "}
                   </div>
                 </div>
               </div>
-              <div className="mt-6 flex flex-col gap-2 ">
+              <div className="mt-4 flex items-center gap-2">
+                <Input
+                  placeholder="Coupon Code"
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value)}
+                  className="focus-visible:ring-1"
+                />
+                <Button
+                  onClick={applyCoupon}
+                  type="button"
+                  className="bg-blue-500 text-white hover:bg-blue-400"
+                >
+                  Apply
+                </Button>
+              </div>
+              <div className="mt-6 flex flex-col gap-2">
                 <h1 className="text-xl font-bold">Your Payment Information</h1>
                 {paymentMethod && (
-                  <div className="my-2  flex w-36 items-center justify-center gap-2 rounded-md border border-blue-400 bg-blue-50 py-2.5 text-black">
+                  <div className="my-2 flex w-36 items-center justify-center gap-2 rounded-md border border-blue-400 bg-blue-50 py-2.5 text-black">
                     <CreditCard size={24} />{" "}
                     <p className="font-semibold">{paymentMethod}</p>
                   </div>

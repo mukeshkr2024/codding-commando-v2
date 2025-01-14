@@ -65,7 +65,7 @@ const ChapterIdPage = ({ params }) => {
     chapterData?.title,
     chapterData?.description,
     chapterData?.isLive ? chapterData?.liveUrl : chapterData?.videoUrl,
-    chapterData?.mentors?.some((mentor) => mentor),
+    // chapterData?.mentors?.some((mentor) => mentor),
   ];
 
   const totalFields = requiredFields.length;
@@ -153,13 +153,13 @@ const ChapterIdPage = ({ params }) => {
                 chapterId={params.chapterId}
                 onUpdateSuccess={onUpdateSuccess}
               />
-              <AssignMentorToChapter
+              {/* <AssignMentorToChapter
                 initialData={chapterData}
                 courseId={params.courseId}
                 moduleId={params.moduleId}
                 chapterId={params.chapterId}
                 onUpdateSuccess={onUpdateSuccess}
-              />
+              /> */}
               <LiveClassToggle
                 initialData={chapterData}
                 courseId={params.courseId}

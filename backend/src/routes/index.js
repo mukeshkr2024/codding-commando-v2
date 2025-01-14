@@ -29,6 +29,7 @@ const workshopRouter = require("./v1/workshop.routes");
 const enrollCourseRouter = require("./v1/enrolled-course.routes");
 const quizRouter = require("./v1/quiz.routes");
 const { enrollmentRouter } = require("./v1/enrollment.routes");
+const { couponRouter } = require("./v1/coupon.routes");
 
 const router = express.Router();
 const storage = multer.memoryStorage();
@@ -79,6 +80,9 @@ router.use("/workshop", workshopRouter);
 
 // purchase routes
 router.use("/payment", purchaseRouter);
+
+// coupons routes
+router.use("/coupons", couponRouter);
 
 // quiz routes
 router.use("/quiz-questions", quizRouter);

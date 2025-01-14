@@ -205,12 +205,17 @@ const verifyPaymentOrder = CatchAsyncError(async (req, res, next) => {
     const courseId = req.params.courseId;
     const body = `${razorpay_order_id}|${razorpay_payment_id}`;
 
+    console.log("body", body);
+    console.log("RAZORPAY_API_SECRET_KEY", process.env.RAZORPAY_API_SECRET_KEY);
+
     const expectedSignature = crypto
       .createHmac("sha256", process.env.RAZORPAY_API_SECRET_KEY)
       .update(body)
       .digest("hex");
 
     const isAuthentic = expectedSignature === razorpay_signature;
+
+    console.log("isAuthentic", isAuthentic);
 
     if (!isAuthentic) {
       return res.status(400).json({
@@ -286,6 +291,8 @@ const verifyPaymentOrder = CatchAsyncError(async (req, res, next) => {
       message: "Payment created successfully",
     });
   } catch (error) {
+    console.log("Errror verifying ", error);
+
     return next(new ErrorHandler(error.message, error, 400));
   }
 });

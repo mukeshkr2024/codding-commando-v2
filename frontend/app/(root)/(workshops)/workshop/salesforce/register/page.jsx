@@ -79,7 +79,7 @@ const RegisterPage = () => {
           try {
             const { data } = await apiClient.post(
               `/workshop/${workshop}/verify-order`,
-              responseData
+              responseData,
             );
 
             if (data.success) {
@@ -123,7 +123,7 @@ const RegisterPage = () => {
     >
       <div className="max-w-sm overflow-hidden rounded-md border border-slate-400 shadow-xl sm:shadow-lg">
         <div className="w-full flex-col bg-[#050208] px-6">
-          <div className="flex w-full items-center justify-center py-6 ">
+          <div className="flex w-full items-center justify-center py-6">
             <Image
               src="/assets/icons/logo.svg"
               alt="Coding Commando"
@@ -142,7 +142,7 @@ const RegisterPage = () => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-col space-y-6 "
+              className="flex flex-col space-y-6"
             >
               <FormField
                 control={form.control}
