@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+const baseURL =
+  process.env.NEXT_PUBLIC_BASE_URL || "https://api.codingcommando.in/api/v1";
 
 if (!baseURL) {
   console.error("NEXT_PUBLIC_BASE_URL is not defined");
