@@ -231,12 +231,14 @@ const handleCreateOrder = CatchAsyncError(async (req, res, next) => {
       course: course._id,
     });
 
+    console.log(process.env.RAZORPAY_API_KEY_SECRET);
+    console.log(process.env.RAZORPAY_API_SECRET_KEY);
+
     // razorpay instance
     const instance = new RazorPay({
-      key_id: process.env.RAZORPAY_API_KEY,
-      key_secret: process.env.RAZORPAY_API_SECRET,
+      key_id: process.env.RAZORPAY_API_KEY_SECRET,
+      key_secret: process.env.RAZORPAY_API_SECRET_KEY,
     });
-
     let price;
 
     if (method === "fullPrice") {
